@@ -42,15 +42,17 @@ class FrontController extends Controller
         ]);
         $data = $request->all();
         $fio = explode(" ", $request['fio']);
-        $name = $fio[0];
-
-        $surname = isset($fio[1]) ? $fio[1] : "";
+        $surname = $fio[0];
+        $name = isset($fio[1]) ? $fio[1] : "";
         $middlename = isset($fio[2]) ? $fio[2] : "";
         $data['name'] = $name;
         $data['surname'] = $surname;
         $data['middlename'] = $middlename;
 //        dd($data);
-        Query::add($data);
-
+        $query = Query::add($data);
+        $query->uploadFile($data['photo_card_url'], 'photo_card_url');
+        $query->uploadFile($data['photo_url'], 'photo_url');
+        $query->uploadFile($data['photo_diploma_url'], 'photo_diploma_url');
+        $query->uploadFile($data['reference_075_url'], 'reference_075_url');
     }
 }

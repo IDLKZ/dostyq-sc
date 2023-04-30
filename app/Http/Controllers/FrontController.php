@@ -27,7 +27,7 @@ class FrontController extends Controller
         $this->validate($request, [
            'fio' => 'required',
            'iin' => 'required',
-           'country' => 'required',
+           'country_id' => 'required',
            'phone' => 'required',
            'email' => 'required',
            'education_type_id' => 'required',
@@ -40,6 +40,7 @@ class FrontController extends Controller
            'photo_diploma_url' => 'required',
            'reference_075_url' => 'required'
         ]);
+
         $data = $request->all();
         $fio = explode(" ", $request['fio']);
         $surname = $fio[0];
@@ -54,5 +55,6 @@ class FrontController extends Controller
         $query->uploadFile($data['photo_url'], 'photo_url');
         $query->uploadFile($data['photo_diploma_url'], 'photo_diploma_url');
         $query->uploadFile($data['reference_075_url'], 'reference_075_url');
+        return redirect()->back();
     }
 }

@@ -23,7 +23,9 @@ class DatabaseSeeder extends Seeder
            EducationFormSeeder::class,
            RegionsSeeder::class,
            CountrySeeder::class,
-           EpsSeeder::class
+           EpsSeeder::class,
+           RoleSeeder::class,
+           UserSeeder::class
         ]);
     }
 }

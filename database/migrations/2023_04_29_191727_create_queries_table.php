@@ -17,7 +17,6 @@ return new class extends Migration
             $table->string('surname');
             $table->string('middlename')->nullable();
             $table->date('birthday')->nullable();
-            $table->string('country');
             $table->string('iin')->unique();
             $table->string('number_card_id')->nullable()->unique();
             $table->date('date_card_id')->nullable();
@@ -28,6 +27,8 @@ return new class extends Migration
             $table->string('photo_card_url');
             $table->string('photo_diploma_url');
             $table->string('reference_075_url');
+            $table->unsignedBigInteger('country_id');
+            $table->foreign('country_id')->references('id')->on('countries');
             $table->unsignedBigInteger('eps_id');
             $table->foreign('eps_id')->references('id')->on('eps');
             $table->unsignedBigInteger('language_id')->nullable();

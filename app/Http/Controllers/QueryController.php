@@ -12,7 +12,8 @@ class QueryController extends Controller
      */
     public function index()
     {
-        //
+        $queries = Query::with('eps', 'educationType', 'educationForm', 'region')->paginate(20);
+        return view('queries.index', compact('queries'));
     }
 
     /**
@@ -34,9 +35,11 @@ class QueryController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Query $query)
+    public function show($id)
     {
-        //
+        $query = Query::with('eps', 'educationType', 'educationForm', 'region')->where('id', $id)->firstOrFail();
+
+        return view('queries.show', compact('query'));
     }
 
     /**
@@ -58,8 +61,14 @@ class QueryController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Query $query)
+    public function destroy($id)
     {
-        //
+        $query = Query::findOrFail($id);
+        $query->removeFile('photo_url');
+        $query->removeFile('photo_card_url');
+        $query->removeFile('photo_diploma_url');
+        $query->removeFile('reference_075_url');
+        $query->delete();
+        return redirect()->back();
     }
 }

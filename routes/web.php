@@ -3,8 +3,10 @@
 use App\Http\Controllers\EpsController;
 use App\Http\Controllers\FrontController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\QueryController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,9 +19,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [FrontController::class, 'index'])->name('front');
-Route::post('/create-query', [FrontController::class, 'createQuery'])->name('create-query');
 
+Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]], function()
+{
+    Route::get('clear_cache', function () {
+        Artisan::call('config:cache');
+        return 'DONE!';
+    });
+
+    Route::get('/', [FrontController::class, 'index'])->name('front');
+    Route::post('/create-query', [FrontController::class, 'createQuery'])->name('create-query');
+});
 
 
 Route::middleware(['auth', 'verified'])->group(function () {
@@ -31,6 +41,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::resource('eps', EpsController::class);
+    Route::resource('queries', QueryController::class)->except(['create', 'store']);
 });
 
 require __DIR__.'/auth.php';

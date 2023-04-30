@@ -21,7 +21,7 @@ class EpsSeeder extends Seeder
         Eps::create([
            'title_kz' => '6В01210 - Мектепке дейінгі оқыту және тәрбиелеу',
            'title_ru' => '6В01210 - Дошкольное обучение и  воспитание',
-           'title_en' => ''
+           'title_en' => '6В01210 - Preschool education and upbringing'
         ]);
         Eps::create([
            'title_kz' => '6В01310 - Бастауыш оқытудың педагогикасы мен әдістемесі',

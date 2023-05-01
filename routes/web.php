@@ -42,6 +42,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::resource('eps', EpsController::class);
     Route::resource('queries', QueryController::class)->except(['create', 'store']);
+    Route::post('query-search', [QueryController::class, 'search'])->name('query-search');
 });
 
 require __DIR__.'/auth.php';

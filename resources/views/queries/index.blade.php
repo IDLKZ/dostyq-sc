@@ -9,6 +9,82 @@
 {{--                Создать--}}
 {{--            </a>--}}
 {{--        </div>--}}
+        <div class="py-3">
+            <h1 class="underline decoration-4 text-lg">Фильтр</h1>
+        </div>
+
+        <form action="{{route('query-search')}}" method="post">
+            @csrf
+            <div class="grid grid-cols-4 gap-4">
+                <div>
+                    <label>Введите фамилию</label>
+                    <input type="text" class="peer block min-h-[auto] w-full rounded border-1" placeholder="фамилия" name="surname">
+                </div>
+                <div>
+                    <label>Введите имя</label>
+                    <input type="text" class="peer block min-h-[auto] w-full rounded border-1" placeholder="имя" name="name">
+                </div>
+
+                <div class="relative mb-4" data-te-input-wrapper-init>
+                    <label>Выберите ОП</label>
+                    <select name="eps_id" class="w-full" data-te-select-init>
+                        <option value="0" selected>Все</option>
+                        @foreach($eps as $ep)
+                            <option value="{{$ep->id}}">{{$ep->title}}</option>
+                        @endforeach
+                    </select>
+                </div>
+
+                <div class="relative mb-4" data-te-input-wrapper-init>
+                    <label>Выберите регион</label>
+                    <select name="region_id" class="w-full" data-te-select-init>
+                        <option value="0" selected>Все</option>
+                        @foreach($regions as $region)
+                            <option value="{{$region->id}}">{{$region->title}}</option>
+                        @endforeach
+                    </select>
+                </div>
+
+                <div class="relative mb-4" data-te-input-wrapper-init>
+                    <label>Выберите гражданство</label>
+                    <select name="country_id" class="w-full" data-te-select-init>
+                        <option value="0" selected>Все</option>
+                        @foreach($countries as $country)
+                            <option value="{{$country->id}}">{{$country->title}}</option>
+                        @endforeach
+                    </select>
+                </div>
+
+                <div class="relative mb-4" data-te-input-wrapper-init>
+                    <label>Выберите образования</label>
+                    <select name="education_type_id" class="w-full" data-te-select-init>
+                        <option value="0" selected>Все</option>
+                        @foreach($education_types as $education_type)
+                            <option value="{{$education_type->id}}">{{$education_type->title}}</option>
+                        @endforeach
+                    </select>
+                </div>
+
+                <div class="relative mb-4" data-te-input-wrapper-init>
+                    <label>Выберите форму обучения</label>
+                    <select name="education_form_id" class="w-full" data-te-select-init>
+                        <option value="0" selected>Все</option>
+                        @foreach($education_forms as $education_form)
+                            <option value="{{$education_form->id}}">{{$education_form->title}}</option>
+                        @endforeach
+                    </select>
+                </div>
+
+                <div class="relative mb-4 flex items-end">
+                    <button
+                        type="submit"
+                        class="inline-block rounded bg-primary px-6 py-3 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]">
+                        Найти
+                    </button>
+                </div>
+
+            </div>
+        </form>
 
         <div class="flex flex-col">
             <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -22,9 +98,9 @@
                                 <th scope="col" class="px-6 py-4">ИИН</th>
                                 <th scope="col" class="px-6 py-4">Телефон</th>
                                 <th scope="col" class="px-6 py-4">Почта</th>
-                                <th scope="col" class="px-6 py-4">ОБРАЗОВАНИЕ</th>
-                                <th scope="col" class="px-6 py-4">ФОРМА ОБУЧЕНИЯ</th>
-                                <th scope="col" class="px-6 py-4">ОП</th>
+{{--                                <th scope="col" class="px-6 py-4">ОБРАЗОВАНИЕ</th>--}}
+{{--                                <th scope="col" class="px-6 py-4">ФОРМА ОБУЧЕНИЯ</th>--}}
+{{--                                <th scope="col" class="px-6 py-4">ОП</th>--}}
                                 <th scope="col" class="px-6 py-4">Адрес</th>
                                 <th scope="col" class="px-6 py-4 text-center">Действие</th>
                             </tr>
@@ -37,9 +113,9 @@
                                     <td class="whitespace-nowrap px-6 py-4">{{$item->iin}}</td>
                                     <td class="whitespace-nowrap px-6 py-4">{{$item->phone}}</td>
                                     <td class="whitespace-nowrap px-6 py-4">{{$item->email}}</td>
-                                    <td class="whitespace-nowrap px-6 py-4">{{$item->educationType->title_ru}}</td>
-                                    <td class="whitespace-nowrap px-6 py-4">{{$item->educationForm->title_ru}}</td>
-                                    <td class="whitespace-nowrap px-6 py-4">{{$item->eps->title_ru}}</td>
+{{--                                    <td class="whitespace-nowrap px-6 py-4">{{$item->educationType->title_ru}}</td>--}}
+{{--                                    <td class="whitespace-nowrap px-6 py-4">{{$item->educationForm->title_ru}}</td>--}}
+{{--                                    <td class="whitespace-nowrap px-6 py-4">{{$item->eps->title_ru}}</td>--}}
                                     <td class="whitespace-nowrap px-6 py-4">{{$item->region->title_ru}} ({{$item->address}})</td>
                                     <td class="flex justify-center py-4">
                                         <a href="{{route('queries.show', $item->id)}}" class="mr-3">

@@ -9,6 +9,7 @@ use App\Models\Eps;
 use App\Models\Query;
 use App\Models\Region;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class FrontController extends Controller
 {
@@ -39,6 +40,18 @@ class FrontController extends Controller
            'photo_url' => 'required',
            'photo_diploma_url' => 'required',
            'reference_075_url' => 'required'
+        ], [], [
+            'fio' => __('messages.fio'),
+            'iin' => __('messages.iin'),
+            'phone' => __('messages.phone'),
+            'email' => __('messages.email'),
+            'education_type_id' => __('messages.etype'),
+            'education_form_id' => __('messages.eform'),
+            'address' => __('messages.address'),
+            'photo_card_url' => __('messages.card_id'),
+            'photo_url' => __('messages.photo'),
+            'photo_diploma_url' => __('messages.diploma'),
+            'reference_075_url' => __('messages.docs_075')
         ]);
 
         $data = $request->all();
@@ -55,6 +68,7 @@ class FrontController extends Controller
         $query->uploadFile($data['photo_url'], 'photo_url');
         $query->uploadFile($data['photo_diploma_url'], 'photo_diploma_url');
         $query->uploadFile($data['reference_075_url'], 'reference_075_url');
+        Alert::success(__('messages.success_alert'));
         return redirect()->back();
     }
 }

@@ -21,5 +21,6 @@ return [
     'diploma' => 'Attach a document of education (certificate/diploma):',
     'docs_075' => 'Attach a certificate of form 075 (scanned version):',
 
-    'save' => 'Send'
+    'save' => 'Send',
+    'success_alert' => 'Your application has been successfully sent'
 ];

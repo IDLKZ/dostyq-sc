@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\QueriesExport;
 use App\Models\Country;
 use App\Models\EducationForm;
 use App\Models\EducationTypes;
@@ -17,41 +18,36 @@ class QueryController extends Controller
      */
     public function index()
     {
+        $forExp = [];
         $queries = Query::with('region')->paginate(20);
         $eps = Eps::all();
         $regions = Region::all();
         $education_forms = EducationForm::all();
         $education_types = EducationTypes::all();
         $countries = Country::all();
-        return view('queries.index', compact('queries', 'eps', 'regions', 'education_forms', 'education_types', 'countries'));
+        return view('queries.index', compact(
+            'queries', 'eps', 'regions',
+            'education_forms', 'education_types', 'countries', 'forExp'));
     }
 
     public function search(Request $request)
     {
-        $data = Query::with('region')->where('surname', 'LIKE', '%'.$request['surname'].'%')
-            ->where('name', 'LIKE', '%'.$request['name'].'%');
-        if ($request['country_id'] != 0) {
-            $data->where('country_id', $request['country_id']);
-        }
-        if ($request['eps_id'] != 0) {
-            $data->where('eps_id', $request['eps_id']);
-        }
-        if ($request['region_id'] != 0) {
-            $data->where('region_id', $request['region_id']);
-        }
-        if ($request['education_type_id'] != 0) {
-            $data->where('education_type_id', $request['education_type_id']);
-        }
-        if ($request['education_form_id'] != 0) {
-            $data->where('education_form_id', $request['education_form_id']);
-        }
+        $forExp = [];
+        $data = Query::searchable($request);
         $queries = $data->paginate(20);
         $eps = Eps::all();
         $regions = Region::all();
         $education_forms = EducationForm::all();
         $education_types = EducationTypes::all();
         $countries = Country::all();
-        return view('queries.index', compact('queries','eps', 'regions', 'education_forms', 'education_types', 'countries'));
+        $forExp = $request->all();
+        return view('queries.index', compact('queries','eps', 'regions', 'education_forms', 'education_types', 'countries', 'forExp'));
+    }
+
+    public function export(Request $request)
+    {
+        $query = Query::searchable($request);
+        return (new QueriesExport($request))->download('queries.xlsx');
     }
 
     /**

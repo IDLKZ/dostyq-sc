@@ -38,10 +38,10 @@
                                     <b>ИИН:</b> {{$query->iin}}
                                 </p>
                                 <p class="text-base text-neutral-600 dark:text-neutral-200">
-                                    <b>Телефон:</b> {{$query->iin}}
+                                    <b>Телефон:</b> {{$query->phone}}
                                 </p>
                                 <p class="text-base text-neutral-600 dark:text-neutral-200">
-                                    <b>Почта:</b> {{$query->iin}}
+                                    <b>Почта:</b> {{$query->email}}
                                 </p>
                                 <p class="text-base text-neutral-600 dark:text-neutral-200">
                                     <b>Гражданство:</b> {{$query->country->title_ru}}

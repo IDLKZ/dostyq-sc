@@ -32,6 +32,35 @@ class Query extends Model
         'reference_075_url'
     ];
 
+    public static function searchable($request, $boolean = false)
+    {
+        if ($boolean) {
+            $data = Query::with('region', 'country', 'eps', 'educationType', 'educationForm')->where('iin', 'LIKE', '%'.$request['iin'].'%')
+                ->where('surname', 'LIKE', '%'.$request['surname'].'%')
+                ->where('name', 'LIKE', '%'.$request['name'].'%');
+        } else {
+            $data = Query::with('region')->where('iin', 'LIKE', '%'.$request['iin'].'%')
+                ->where('surname', 'LIKE', '%'.$request['surname'].'%')
+                ->where('name', 'LIKE', '%'.$request['name'].'%');
+        }
+        if ($request['country_id'] != 0) {
+            $data->where('country_id', $request['country_id']);
+        }
+        if ($request['eps_id'] != 0) {
+            $data->where('eps_id', $request['eps_id']);
+        }
+        if ($request['region_id'] != 0) {
+            $data->where('region_id', $request['region_id']);
+        }
+        if ($request['education_type_id'] != 0) {
+            $data->where('education_type_id', $request['education_type_id']);
+        }
+        if ($request['education_form_id'] != 0) {
+            $data->where('education_form_id', $request['education_form_id']);
+        }
+        return $data;
+    }
+
     public function eps()
     {
         return $this->belongsTo(Eps::class, 'eps_id');

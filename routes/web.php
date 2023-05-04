@@ -4,6 +4,7 @@ use App\Http\Controllers\EpsController;
 use App\Http\Controllers\FrontController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\QueryController;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
@@ -43,6 +44,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::resource('eps', EpsController::class);
     Route::resource('queries', QueryController::class)->except(['create', 'store']);
     Route::post('query-search', [QueryController::class, 'search'])->name('query-search');
+    Route::post('exports', [QueryController::class, 'export'])->name('export-query');
 });
 
 require __DIR__.'/auth.php';

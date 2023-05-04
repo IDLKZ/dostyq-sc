@@ -17,6 +17,10 @@
             @csrf
             <div class="grid grid-cols-4 gap-4">
                 <div>
+                    <label>Введите ИИН</label>
+                    <input type="text" class="peer block min-h-[auto] w-full rounded border-1" placeholder="ИИН" name="iin">
+                </div>
+                <div>
                     <label>Введите фамилию</label>
                     <input type="text" class="peer block min-h-[auto] w-full rounded border-1" placeholder="фамилия" name="surname">
                 </div>
@@ -82,10 +86,31 @@
                         Найти
                     </button>
                 </div>
-
             </div>
         </form>
 
+        <div class="relative mb-4 flex items-end justify-end">
+            <form action="{{route('export-query')}}" method="post">
+                @csrf
+                @if(count($forExp) > 0)
+                    <input type="hidden" name="iin" value="{{$forExp['iin']}}">
+                    <input type="hidden" name="surname" value="{{$forExp['surname']}}">
+                    <input type="hidden" name="name" value="{{$forExp['name']}}">
+                    <input type="hidden" name="eps_id" value="{{$forExp['eps_id']}}">
+                    <input type="hidden" name="country_id" value="{{$forExp['country_id']}}">
+                    <input type="hidden" name="region_id" value="{{$forExp['region_id']}}">
+                    <input type="hidden" name="education_type_id" value="{{$forExp['education_type_id']}}">
+                    <input type="hidden" name="education_form_id" value="{{$forExp['education_form_id']}}">
+                @endif
+
+                <button
+                    type="submit"
+                    class="inline-block rounded bg-success px-6 py-3 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]">
+                    Экспорт в Excel
+                </button>
+            </form>
+
+        </div>
         <div class="flex flex-col">
             <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
                 <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
@@ -116,7 +141,7 @@
 {{--                                    <td class="whitespace-nowrap px-6 py-4">{{$item->educationType->title_ru}}</td>--}}
 {{--                                    <td class="whitespace-nowrap px-6 py-4">{{$item->educationForm->title_ru}}</td>--}}
 {{--                                    <td class="whitespace-nowrap px-6 py-4">{{$item->eps->title_ru}}</td>--}}
-                                    <td class="whitespace-nowrap px-6 py-4">{{$item->region->title_ru}} ({{$item->address}})</td>
+                                    <td class="whitespace-nowrap px-6 py-4">{{$item->region->title_ru}}</td>
                                     <td class="flex justify-center py-4">
                                         <a href="{{route('queries.show', $item->id)}}" class="mr-3">
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -124,11 +149,11 @@
                                                 <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                                             </svg>
                                         </a>
-                                        <a href="{{route('queries.edit', $item->id)}}" class="mr-3">
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                                <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
-                                            </svg>
-                                        </a>
+{{--                                        <a href="{{route('queries.edit', $item->id)}}" class="mr-3">--}}
+{{--                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">--}}
+{{--                                                <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />--}}
+{{--                                            </svg>--}}
+{{--                                        </a>--}}
                                         <form action="{{route('queries.destroy', $item->id)}}" method="post">
                                             @csrf
                                             @method('delete')

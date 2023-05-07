@@ -60,7 +60,7 @@
                 datasets: [{
                     label: 'Абитуриентов',
                     // backgroundColor: Object.values(Utils.CHART_COLORS),
-                    backgroundColor: Utils.CHART_COLORS.red,
+                    backgroundColor: '#50f134',
                     data: regionData,
                 }]
             };

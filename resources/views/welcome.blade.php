@@ -3,8 +3,8 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
-        <title>Laravel</title>
+        <link rel="shortcut icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
+        <title>{{__('messages.app_title')}}</title>
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
@@ -105,7 +105,7 @@
                                             class="mx-auto w-48"
                                             src="{{asset('images/logo.webp')}}"
                                             alt="logo" />
-                                        <h4 class="mb-12 mt-1 pb-1 text-xl font-semibold">
+                                        <h4 class="mb-4 mt-1 pb-1 text-xl font-semibold">
                                             {!! __('messages.dash_title') !!}
                                         </h4>
                                     </div>
@@ -136,6 +136,7 @@
                                                             type="text"
                                                             class="@error('iin') border-red-600 @enderror peer block min-h-[auto] w-full rounded border-1"
                                                             name="iin"
+                                                            id="iin"
                                                         />
                                                         @error('iin')
                                                             <div class="text-red-600">{{ $message }}</div>
@@ -158,6 +159,7 @@
                                                             type="text"
                                                             class="@error('phone') border-red-600 @enderror peer block min-h-[auto] w-full rounded border-1"
                                                             name="phone"
+                                                            id="phone"
                                                         />
                                                         @error('phone')
                                                             <div class="text-red-600">{{ $message }}</div>
@@ -349,5 +351,15 @@
                     </div>
                 </section>
         </div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/3.3.4/jquery.inputmask.bundle.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('#phone').inputmask('+7(999)-999-9999');
+            $('#iin').inputmask('9999-9999-9999');
+        });
+    </script>
     </body>
 </html>

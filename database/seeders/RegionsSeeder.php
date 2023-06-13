@@ -118,5 +118,10 @@ class RegionsSeeder extends Seeder
            'title_ru' => 'Шардаринский район',
            'title_en' => 'Shardara region'
         ]);
+        Region::create([
+           'title_kz' => 'Басқа',
+           'title_ru' => 'Другие',
+           'title_en' => 'Other'
+        ]);
     }
 }

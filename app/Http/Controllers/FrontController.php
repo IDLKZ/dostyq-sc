@@ -32,14 +32,14 @@ class FrontController extends Controller
            'phone' => 'required',
            'email' => 'required',
            'education_type_id' => 'required',
-           'education_form_id' => 'required',
+//           'education_form_id' => 'required',
            'eps_id' => 'required',
            'region_id' => 'required',
-           'address' => 'required',
-           'photo_card_url' => 'required',
-           'photo_url' => 'required',
-           'photo_diploma_url' => 'required',
-           'reference_075_url' => 'required'
+//           'address' => 'required',
+           'photo_card_url' => 'required|max:4096',
+           'photo_url' => 'required|max:4096',
+           'photo_diploma_url' => 'required|max:4096',
+           'reference_075_url' => 'required|max:4096'
         ], [], [
             'fio' => __('messages.fio'),
             'iin' => __('messages.iin'),
@@ -53,7 +53,6 @@ class FrontController extends Controller
             'photo_diploma_url' => __('messages.diploma'),
             'reference_075_url' => __('messages.docs_075')
         ]);
-
         $data = $request->all();
         $fio = explode(" ", $request['fio']);
         $surname = $fio[0];
@@ -62,6 +61,7 @@ class FrontController extends Controller
         $data['name'] = $name;
         $data['surname'] = $surname;
         $data['middlename'] = $middlename;
+        $data['education_form_id'] = 1;
 //        dd($data);
         $query = Query::add($data);
         $query->uploadFile($data['photo_card_url'], 'photo_card_url');

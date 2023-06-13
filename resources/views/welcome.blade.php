@@ -134,6 +134,7 @@
                                                     <div class="relative mb-4" data-te-input-wrapper-init>
                                                         <input
                                                             type="text"
+                                                            id="iin"
                                                             class="@error('iin') border-red-600 @enderror peer block min-h-[auto] w-full rounded border-1"
                                                             name="iin"
                                                         />
@@ -156,6 +157,7 @@
                                                     <div class="relative mb-4" data-te-input-wrapper-init>
                                                         <input
                                                             type="text"
+                                                            id="phone"
                                                             class="@error('phone') border-red-600 @enderror peer block min-h-[auto] w-full rounded border-1"
                                                             name="phone"
                                                         />
@@ -199,29 +201,29 @@
                                                         @enderror
                                                     </div>
 
-                                                    <p class="mb-4">{{__('messages.eform')}}</p>
+{{--                                                    <p class="mb-4">{{__('messages.eform')}}</p>--}}
                                                     <!--Username input-->
-                                                    <div class="relative mb-4" data-te-input-wrapper-init>
-                                                        <div class="flex justify-start">
-                                                            @foreach($education_forms as $education_form)
-                                                            <div class="mb-[0.125rem] mr-4 inline-block min-h-[1.5rem] pl-[1.5rem]">
-                                                                <input
-                                                                    class="relative float-left -ml-[1.5rem] mr-1 mt-0.5 h-5 w-5 appearance-none rounded-full border-2 border-solid border-neutral-300 before:pointer-events-none before:absolute before:h-4 before:w-4 before:scale-0 before:rounded-full before:bg-transparent before:opacity-0 before:shadow-[0px_0px_0px_13px_transparent] before:content-[''] after:absolute after:z-[1] after:block after:h-4 after:w-4 after:rounded-full after:content-[''] checked:border-primary checked:before:opacity-[0.16] checked:after:absolute checked:after:left-1/2 checked:after:top-1/2 checked:after:h-[0.625rem] checked:after:w-[0.625rem] checked:after:rounded-full checked:after:border-primary checked:after:bg-primary checked:after:content-[''] checked:after:[transform:translate(-50%,-50%)] hover:cursor-pointer hover:before:opacity-[0.04] hover:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:shadow-none focus:outline-none focus:ring-0 focus:before:scale-100 focus:before:opacity-[0.12] focus:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:before:transition-[box-shadow_0.2s,transform_0.2s] checked:focus:border-primary checked:focus:before:scale-100 checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca] checked:focus:before:transition-[box-shadow_0.2s,transform_0.2s] dark:border-neutral-600 dark:checked:border-primary dark:checked:after:border-primary dark:checked:after:bg-primary dark:focus:before:shadow-[0px_0px_0px_13px_rgba(255,255,255,0.4)] dark:checked:focus:border-primary dark:checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca]"
-                                                                    type="radio"
-                                                                    name="education_form_id"
-                                                                    id="educaitonForm{{$education_form->id}}"
-                                                                    value="{{$education_form->id}}" />
-                                                                <label
-                                                                    class="mt-px inline-block pl-[0.15rem] hover:cursor-pointer"
-                                                                    for="educaitonForm{{$education_form->id}}"
-                                                                >{{$education_form->title}}</label>
-                                                            </div>
-                                                            @endforeach
-                                                        </div>
-                                                        @error('education_form_id')
-                                                            <div class="text-red-600">{{ $message }}</div>
-                                                        @enderror
-                                                    </div>
+{{--                                                    <div class="relative mb-4" data-te-input-wrapper-init>--}}
+{{--                                                        <div class="flex justify-start">--}}
+{{--                                                            @foreach($education_forms as $education_form)--}}
+{{--                                                            <div class="mb-[0.125rem] mr-4 inline-block min-h-[1.5rem] pl-[1.5rem]">--}}
+{{--                                                                <input--}}
+{{--                                                                    class="relative float-left -ml-[1.5rem] mr-1 mt-0.5 h-5 w-5 appearance-none rounded-full border-2 border-solid border-neutral-300 before:pointer-events-none before:absolute before:h-4 before:w-4 before:scale-0 before:rounded-full before:bg-transparent before:opacity-0 before:shadow-[0px_0px_0px_13px_transparent] before:content-[''] after:absolute after:z-[1] after:block after:h-4 after:w-4 after:rounded-full after:content-[''] checked:border-primary checked:before:opacity-[0.16] checked:after:absolute checked:after:left-1/2 checked:after:top-1/2 checked:after:h-[0.625rem] checked:after:w-[0.625rem] checked:after:rounded-full checked:after:border-primary checked:after:bg-primary checked:after:content-[''] checked:after:[transform:translate(-50%,-50%)] hover:cursor-pointer hover:before:opacity-[0.04] hover:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:shadow-none focus:outline-none focus:ring-0 focus:before:scale-100 focus:before:opacity-[0.12] focus:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:before:transition-[box-shadow_0.2s,transform_0.2s] checked:focus:border-primary checked:focus:before:scale-100 checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca] checked:focus:before:transition-[box-shadow_0.2s,transform_0.2s] dark:border-neutral-600 dark:checked:border-primary dark:checked:after:border-primary dark:checked:after:bg-primary dark:focus:before:shadow-[0px_0px_0px_13px_rgba(255,255,255,0.4)] dark:checked:focus:border-primary dark:checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca]"--}}
+{{--                                                                    type="radio"--}}
+{{--                                                                    name="education_form_id"--}}
+{{--                                                                    id="educaitonForm{{$education_form->id}}"--}}
+{{--                                                                    value="{{$education_form->id}}" />--}}
+{{--                                                                <label--}}
+{{--                                                                    class="mt-px inline-block pl-[0.15rem] hover:cursor-pointer"--}}
+{{--                                                                    for="educaitonForm{{$education_form->id}}"--}}
+{{--                                                                >{{$education_form->title}}</label>--}}
+{{--                                                            </div>--}}
+{{--                                                            @endforeach--}}
+{{--                                                        </div>--}}
+{{--                                                        @error('education_form_id')--}}
+{{--                                                            <div class="text-red-600">{{ $message }}</div>--}}
+{{--                                                        @enderror--}}
+{{--                                                    </div>--}}
 
                                                     <p class="mb-4">{{__('messages.student_ep')}}</p>
                                                     <!--Username input-->
@@ -241,17 +243,17 @@
                                                             @endforeach
                                                         </select>
                                                     </div>
-                                                    <div class="relative mb-4" data-te-input-wrapper-init>
-                                                    <input
-                                                        type="text"
-                                                        class="@error('address') border-red-600 @enderror peer block min-h-[auto] w-full rounded border-1"
-                                                        name="address"
-                                                        placeholder="{{__('messages.address')}}..."
-                                                    />
-                                                        @error('address')
-                                                            <div class="text-red-600">{{ $message }}</div>
-                                                        @enderror
-                                                </div>
+{{--                                                    <div class="relative mb-4" data-te-input-wrapper-init>--}}
+{{--                                                    <input--}}
+{{--                                                        type="text"--}}
+{{--                                                        class="@error('address') border-red-600 @enderror peer block min-h-[auto] w-full rounded border-1"--}}
+{{--                                                        name="address"--}}
+{{--                                                        placeholder="{{__('messages.address')}}..."--}}
+{{--                                                    />--}}
+{{--                                                        @error('address')--}}
+{{--                                                            <div class="text-red-600">{{ $message }}</div>--}}
+{{--                                                        @enderror--}}
+{{--                                                    </div>--}}
 
                                                     <!--Submit button-->
                                                     <div class="mb-12 pb-1 pt-1 text-center">
@@ -349,5 +351,15 @@
                     </div>
                 </section>
         </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/3.3.4/jquery.inputmask.bundle.min.js"></script>
+
+    <script>
+        $(document).ready(function(){
+            $('#phone').inputmask('+7 (999)-999-9999');
+            $('#iin').inputmask('9999-9999-9999');
+        });
+    </script>
     </body>
 </html>

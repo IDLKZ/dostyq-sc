@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('iin')->unique();
             $table->string('number_card_id')->nullable()->unique();
             $table->date('date_card_id')->nullable();
-            $table->text('address');
+            $table->text('address')->nullable();
             $table->string('email');
             $table->string('phone');
             $table->string('photo_url');

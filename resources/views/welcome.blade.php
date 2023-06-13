@@ -3,8 +3,8 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
-        <title>Laravel</title>
+        <link rel="shortcut icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
+        <title>{{__('messages.app_title')}}</title>
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
@@ -105,7 +105,7 @@
                                             class="mx-auto w-48"
                                             src="{{asset('images/logo.webp')}}"
                                             alt="logo" />
-                                        <h4 class="mb-12 mt-1 pb-1 text-xl font-semibold">
+                                        <h4 class="mb-4 mt-1 pb-1 text-xl font-semibold">
                                             {!! __('messages.dash_title') !!}
                                         </h4>
                                     </div>
@@ -357,7 +357,7 @@
 
     <script>
         $(document).ready(function(){
-            $('#phone').inputmask('+7 (999)-999-9999');
+            $('#phone').inputmask('+7(999)-999-9999');
             $('#iin').inputmask('9999-9999-9999');
         });
     </script>

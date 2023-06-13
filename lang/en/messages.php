@@ -5,6 +5,7 @@ return [
     'eg' => 'Education Languages',
     'required' => 'required',
 
+    'app_title' => 'Friendship of Peoples',
     'dash_title' => "Friendship of Peoples <br> Peoples' Friendship University named after Academician A.Kuatbekov",
     'fio' => 'Name',
     'iin' => 'Your IIN',

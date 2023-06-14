@@ -120,7 +120,7 @@ class RegionsSeeder extends Seeder
         ]);
         Region::create([
            'title_kz' => 'Басқа',
-           'title_ru' => 'Другие',
+           'title_ru' => 'Другое',
            'title_en' => 'Other'
         ]);
     }

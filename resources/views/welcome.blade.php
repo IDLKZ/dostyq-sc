@@ -237,11 +237,17 @@
                                                     <p class="mb-4">{{__('messages.region')}}</p>
                                                     <!--Username input-->
                                                     <div class="relative mb-4" data-te-input-wrapper-init>
-                                                        <select name="region_id" class="w-full" data-te-select-init>
+                                                        <select name="region_id" class="w-full" data-te-select-init id="regionId">
                                                             @foreach($regions as $region)
                                                                 <option value="{{$region->id}}">{{$region->title}}</option>
                                                             @endforeach
                                                         </select>
+                                                    </div>
+                                                    <div class="relative mb-4" id="address" style="display:none;">
+                                                        <input type="text"
+                                                               placeholder="{{__('messages.address')}}"
+                                                               name="address"
+                                                               class="@error('address') border-red-600 @enderror peer block min-h-[auto] w-full rounded border-1">
                                                     </div>
 {{--                                                    <div class="relative mb-4" data-te-input-wrapper-init>--}}
 {{--                                                    <input--}}
@@ -359,6 +365,14 @@
         $(document).ready(function(){
             $('#phone').inputmask('+7(999)-999-9999');
             $('#iin').inputmask('9999-9999-9999');
+
+            $('#regionId').on('change', function (){
+                if (this.value == 22) {
+                    $('#address').css('display', 'block')
+                } else {
+                    $('#address').css('display', 'none')
+                }
+            })
         });
     </script>
     </body>

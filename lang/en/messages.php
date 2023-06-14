@@ -15,7 +15,7 @@ return [
     'etype' => 'Education',
     'eform' => 'FORM OF TRAINING',
     'student_ep' => 'What educational program (specialty) do you want to enroll in?',
-    'address' => 'village',
+    'address' => 'address',
     'region' => 'RESIDENTIAL ADDRESS',
     'card_id' => 'Attach an identity card (scanned version):',
     'photo' => 'Attach a 3x4 photo (scanned version):',

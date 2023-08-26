@@ -93,9 +93,10 @@
             <form action="{{route('export-query')}}" method="post">
                 @csrf
                 @if(count($forExp) > 0)
-                    <input type="hidden" name="iin" value="{{$forExp['iin']}}">
-                    <input type="hidden" name="surname" value="{{$forExp['surname']}}">
-                    <input type="hidden" name="name" value="{{$forExp['name']}}">
+{{--                    {{dd($forExp)}}--}}
+                    <input type="hidden" name="iin" value="{{isset($forExp['iin'])??null}}">
+                    <input type="hidden" name="surname" value="{{isset($forExp['surname'])??null}}">
+                    <input type="hidden" name="name" value="{{isset($forExp['name'])??null}}">
                     <input type="hidden" name="eps_id" value="{{$forExp['eps_id']}}">
                     <input type="hidden" name="country_id" value="{{$forExp['country_id']}}">
                     <input type="hidden" name="region_id" value="{{$forExp['region_id']}}">
@@ -133,7 +134,7 @@
                             <tbody>
                             @foreach($queries as $item)
                                 <tr class="border-b dark:border-neutral-500">
-                                    <td class="whitespace-nowrap px-6 py-4 font-medium">{{$loop->iteration}}</td>
+                                    <td class="whitespace-nowrap px-6 py-4 font-medium">{{$queries->firstItem() + $loop->index}}</td>
                                     <td class="whitespace-nowrap px-6 py-4">{{$item->surname}} {{$item->name}} {{$item->middlename}}</td>
                                     <td class="whitespace-nowrap px-6 py-4">{{$item->iin}}</td>
                                     <td class="whitespace-nowrap px-6 py-4">{{$item->phone}}</td>
@@ -169,7 +170,7 @@
                             </tbody>
                         </table>
                         <div class="py-4">
-                            {!! $queries->links() !!}
+                            {!! $queries->appends(request()->except('page'))->links() !!}
                         </div>
 
                     </div>
